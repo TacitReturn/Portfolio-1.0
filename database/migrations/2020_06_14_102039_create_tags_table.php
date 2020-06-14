@@ -1,11 +1,10 @@
-<!--TODO: Fix this migration file, find Soft Delete Bug-->
 <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSoftDeleteToPostsTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +13,10 @@ class AddSoftDeleteToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('tags', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +27,6 @@ class AddSoftDeleteToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('deleted_at');
-        });
+        Schema::dropIfExists('tags');
     }
 }
