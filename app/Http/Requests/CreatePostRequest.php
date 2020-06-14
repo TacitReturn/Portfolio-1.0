@@ -29,6 +29,7 @@ class CreatePostRequest extends FormRequest
             'content' => ['required'],
             'published_at' => ['required'],
             'category' => ['required'],
+            'image' => ['required']
         ];
     }
 }

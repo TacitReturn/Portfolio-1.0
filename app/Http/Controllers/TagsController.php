@@ -3,11 +3,11 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\Request;
 use App\Tag;
 use App\Http\Requests\CreateTagRequest;
 use App\Http\Requests\UpdateTagRequest;
-use http\Env\Request;
+//use http\Env\Request;
 
 class TagsController extends Controller
 {
@@ -34,7 +34,8 @@ class TagsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param CreateTagRequest $request
+     * @param Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function store(CreateTagRequest $request)
@@ -44,7 +45,7 @@ class TagsController extends Controller
         $tag->name = $request->input('name');
         $tag->save();
 
-        session()->flash('success', 'tag Created');
+        session()->flash('success', 'Tag Created');
 
         return redirect(route('tags.index'));
     }
@@ -80,7 +81,7 @@ class TagsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTagRequest $request, tag $tag)
+    public function update(UpdateTagRequest $request, Tag $tag)
     {
         $tag->name = $request->input('name');
         $tag->save();
@@ -96,7 +97,7 @@ class TagsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tag $tag)
+    public function destroy(Tag $tag, Request $request)
     {
         $tag->delete();
 

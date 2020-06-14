@@ -31,11 +31,12 @@
                                class="btn btn-success btn-sm">Edit</a>
                         </td>
                         <td>
-                            <form action="">
-                                <!-- Button trigger modal -->
-                                <button onclick="handleDelete({{ $category->id }})" id="delete-category" type="button"
-                                        class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#deleteModal">
+                            <form action="{{route('categories.destroy', $category->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <!-- Button trigger modal -->
+                                <button id="delete-category" type="submit"
+                                        class="btn btn-danger btn-sm">
                                     Delete
                                 </button>
                             </form>
@@ -73,15 +74,15 @@
     </form>
 
 @section('script')
-    <script type="text/javascript">
+{{--    <script type="text/javascript">--}}
 
-        function handleDelete(id) {
-            // Create Form Element
-            let form = document.getElementById('delete-category-form');
-            // Set Form Action
-            form.action = `/categories/${id}`;
-        }
+{{--        function handleDelete(id) {--}}
+{{--            // Create Form Element--}}
+{{--            let form = document.getElementById('delete-category-form');--}}
+{{--            // Set Form Action--}}
+{{--            form.action = `/categories/${id}`;--}}
+{{--        }--}}
 
-    </script>
+{{--    </script>--}}
 @endsection
 @endsection

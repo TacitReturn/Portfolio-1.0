@@ -4,9 +4,9 @@
     <div class="card card-default">
         <div class="card-header text-center">
             @if(isset($tag))
-                Update tag
+                Update Tag
             @else
-                Create tag
+                Create Tag
             @endif
 
         </div>
@@ -25,7 +25,7 @@
                 @endif
 
                 <div class="form-group">
-                    <label for="tag-name">tag Name</label>
+                    <label for="tag-name">Tag Name</label>
                     @if(isset($tag))
                         <input type="text" name="name"
                                id="tag-name" class="form-control"

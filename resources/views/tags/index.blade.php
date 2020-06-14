@@ -3,11 +3,11 @@
 @section('content')
 
     <div class="d-flex justify-content-end mb-2">
-        <a href="{{route('tags.create')}}" class="btn btn-success float-lg-right">Add tag</a>
+        <a href="{{route('tags.create')}}" class="btn btn-success float-lg-right">Add Tag</a>
     </div>
     <div class="card card-default">
         <div class="card-header text-center">
-            tags
+            Tags
         </div>
         <div class="card-body">
             <table class="table">
@@ -24,20 +24,18 @@
                         <td>{{ Str::limit($tag->name, 30, ' ...')}} </td>
                         {{--                        <td>{{$tag->created_at->format('jS F Y h:i A')}}</td>--}}
                         <td>
-                            {{ $tag->post->count() }}
+                            0
                         </td>
                         <td>
                             <a href="{{ route('tags.edit', $tag->id) }}"
                                class="btn btn-success btn-sm">Edit</a>
                         </td>
                         <td>
-                            <form action="">
-                                <!-- Button trigger modal -->
-                                <button onclick="handleDelete({{ $tag->id }})" id="delete-tag" type="button"
-                                        class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#deleteModal">
-                                    Delete
-                                </button>
+                            <form action="{{route('tags.destroy', $tag->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <!-- Button trigger modal -->
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -73,15 +71,15 @@
     </form>
 
 @section('script')
-    <script type="text/javascript">
+    {{--    <script type="text/javascript">--}}
 
-        function handleDelete(id) {
-            // Create Form Element
-            let form = document.getElementById('delete-tag-form');
-            // Set Form Action
-            form.action = `/tags/${id}`;
-        }
+    {{--        function handleDelete(id) {--}}
+    {{--            // Create Form Element--}}
+    {{--            let form = document.getElementById('delete-tag-form');--}}
+    {{--            // Set Form Action--}}
+    {{--            form.action = `/tags/${id}`;--}}
+    {{--        }--}}
 
-    </script>
+    {{--    </script>--}}
 @endsection
 @endsection
