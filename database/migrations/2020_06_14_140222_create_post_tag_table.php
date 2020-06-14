@@ -13,8 +13,11 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
-        Schema::table('post_tag', function (Blueprint $table) {
-            //
+        Schema::create('post_tag', function (Blueprint $table) {
+            $table->id();
+            $table->integer('post_id');
+            $table->integer('tag_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class CreatePostTagTable extends Migration
      */
     public function down()
     {
-        Schema::table('post_tag', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('post_tag');
     }
 }
